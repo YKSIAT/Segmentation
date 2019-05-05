@@ -1,0 +1,11 @@
+## using simpleITK to load and save data.
+import SimpleITK as sitk
+itk_img = sitk.ReadImage('./nifti.nii.gz')
+img = sitk.GetArrayFromImage(itk_img)
+print("img shape:",img.shape)
+
+## save 
+out = sitk.GetImageFromArray(img)
+# # out.SetSpacing(itk_img.GetSpacing())
+# # out.SetOrigin(itk_img.GetOrigin())
+sitk.WriteImage(out,'simpleitk_save.nii.gz')
