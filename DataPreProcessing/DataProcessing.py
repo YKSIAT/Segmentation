@@ -292,10 +292,7 @@ def get_near_the_three_layers(root_path, save_path):
                     # print("t2_slice_data", t2_slice_data.shape)    # (3, 240, 240)
                 data_fusion = np.concatenate((flair_slice_data, t1_slice_data, t1ce_slice_data, t2_slice_data), axis=0)
                 # print("data_fusion.shape", data_fusion.shape)     # (12, 240, 240)
-                # mask_slice_data_ori = np.array(mask_slice_data_ori)
-                # mask_slice_data_whole = np.array(mask_slice_data_whole)
-                # mask_slice_data_core = np.array(mask_slice_data_core)
-                # mask_slice_data_active = np.array(mask_slice_data_active)
+
                 print("mask_slice_data_ori", mask_slice_data_ori.shape)          # (240, 240)
                 print("mask_slice_data_whole", mask_slice_data_whole.shape)      # (240, 240)
                 print("mask_slice_data_core", mask_slice_data_core.shape)        # (240, 240)
@@ -303,27 +300,13 @@ def get_near_the_three_layers(root_path, save_path):
 
                 # print("mask_slice_data.shape", mask_slice_data.shape)    # (1, 240, 240)
                 counter += 1
-                # if counter == 20:
-                #     show_img_multiplex\
-                #         (mask_slice_data_ori, mask_slice_data_whole, mask_slice_data_core,
-                #          mask_slice_data_active, img_title="image")
-                #     break
-                # print("counter", counter)
-                # print("data_fusion", data_fusion.shape)
-                # print("mask_slice_data", mask_slice_data.shape)
-                # , os.path.basename(os.path.normpath(sub_dir)) + "_" + str(idx)
-                # print(os.path.basename(os.path.normpath(sub_dir)) + "_" + str(idx))
+
                 slice_name = os.path.basename(os.path.normpath(sub_dir)) + "_" + str(idx)
                 image_slice_save_path = os.path.join(image_save_path, slice_name)
                 mask_slice_save_path = os.path.join(mask_save_path, slice_name)
                 whole_mask_slice_save_path = os.path.join(whole_mask_save_path, slice_name)
                 core_mask_slice_save_path = os.path.join(core_mask_save_path, slice_name)
                 active_mask_slice_save_path = os.path.join(active_mask_save_path, slice_name)
-                # print("image_slice_save_path", image_slice_save_path)
-                # print("mask_slice_save_path", mask_slice_save_path)
-                # print("whole_mask_slice_save_path", whole_mask_slice_save_path)
-                # print("core_mask_slice_save_path", core_mask_slice_save_path)
-                # print("active_mask_slice_save_path", active_mask_slice_save_path)
 
                 np.save(image_slice_save_path, data_fusion)
                 np.save(mask_slice_save_path, mask_slice_data_ori)
@@ -377,10 +360,6 @@ def generator_image_mask_three(data_path, batch_size=8):
                 # print(image_batch_data_np.shape)
                 image_batch_data.clear()
                 mask_batch_data.clear()
-    # print(np.array(mask_batch_data).shape)    # (422, 1, 240, 240)
-        # print()
-        # print(idx, value)
-
 
 def generator_image_mask_three_test(data_path, batch_size=8):
     """
@@ -398,36 +377,8 @@ def generator_image_mask_three_test(data_path, batch_size=8):
 
 if __name__ == "__main__":
     mask_list = []
-    # path = r"H:\2018\N4"
-    path = r"H:\N42HM\HistogramMatching\Train"
-    # npy_path = r"H:\2018\processed_npy"
-    npy_path = r"H:\N42HM\DataNpy_HM\Train"
-    instance_path = r"H:\2018\N4\Brats18_TCIA10_351_1\Brats18_TCIA10_351_1_t1.nii.gz"
-    mask_instance = r"H:\2018\N4\Brats18_TCIA10_351_1\Brats18_TCIA10_351_1_seg.nii.gz"
-    # type_file = ["fusion_images", "fusion_images"]
-    root_path_ = r"H:\2018\processed_npy"
-    # mask_slice_save_path = r"H:\2018\processed_npy"
-    # image = read_img(instance_path)
-    # mask = read_img(mask_instance)
-
-    # print("mask.shape", mask.shape)
-    # test_80 = mask[:, :, 65]
-    # mask_list.append(test_80)
-    # mask_list = np.array(mask_list)
-    # print(mask_list.shape)
-    # mask_array = get_mask_array(mask_list, regions_type="active")
-    # show_img(mask_list[0, :, :])
-    # show_img(mask_array)
     p = [r"H:\N42HM\HistogramMatching\Train", r"H:\N42HM\HistogramMatching\Val"]
     s = [r"H:\N42HM\DataNpy_HM\Train", r"H:\N42HM\DataNpy_HM\Val"]
     for idx, path_ in enumerate(p):
-        # print(idx, path_, p[idx], s[idx])
         get_near_the_three_layers(p[idx], s[idx])
-    # gen = generator_image_mask_three(root_path_)
-    # for idx, value in enumerate(gen):
-    #     print(idx, value[0].shape, value[1].shape)
-    #     pass
-    # path_npy = r"H:\2018\processed_npy\Brats18_TCIA10_351_1\whole_wt\Brats18_TCIA10_351_1_67.npy"
-    # num = np.load(path_npy)
-    # print(num.shape)
-    # pass
+
