@@ -1,0 +1,3 @@
+ValueError: Error when checking model target: the list of Numpy arrays that you are passing to your model is not the size the model 
+expected. Expected to see 6 array(s), but instead got the following list of 1 arrays: [array([[[[0.],
+  
