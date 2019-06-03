@@ -34,3 +34,26 @@ def dice_coef_multi_class(self, y_pred, y_true):
 	self.dice=np.sum(dice)
 	return self.dice
   # reference website:https://github.com/Lasagne/Recipes/issues/99
+
+
+def generalized_dice_loss_w(y_true, y_pred): 
+    # Compute weights: "the contribution of each label is corrected by the inverse of its volume"
+    Ncl = y_pred.shape[-1]
+    w = np.zeros((Ncl,))
+    for l in range(0,Ncl): w[l] = np.sum( np.asarray(y_true[:,:,:,:,l]==1,np.int8) )
+    w = 1/(w**2+0.00001)
+
+    # Compute gen dice coef:
+    numerator = y_true*y_pred
+    numerator = w*K.sum(numerator,(0,1,2,3))
+    numerator = K.sum(numerator)
+    
+    denominator = y_true+y_pred
+    denominator = w*K.sum(denominator,(0,1,2,3))
+    denominator = K.sum(denominator)
+    
+    gen_dice_coef = numerator/denominator
+    
+    return 1-2*gen_dice_coef
+# reference: https://github.com/keras-team/keras/issues/9395
+
