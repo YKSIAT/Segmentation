@@ -4,8 +4,8 @@ focal loss down-weights the well-classified examples. This has the net effect of
 
 The focal loss can easily be implemented in Keras as a custom loss function.
 
-##Usage
+## Usage
 Compile your model with focal loss as sample:
 
-##References
+## References
 The binary implementation is based @mkocabas's code
