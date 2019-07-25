@@ -24,7 +24,6 @@ class Save2Nii:
         array.SetSpacing(self.reference_image.GetSpacing())
         array.SetOrigin(self.reference_image.GetOrigin())
         sitk.WriteImage(array, save_name)
-        print("hello")
 
 
 if __name__ == "__main__":
